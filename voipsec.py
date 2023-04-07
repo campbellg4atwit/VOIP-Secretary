@@ -3,7 +3,7 @@ from datetime import datetime
 from twilio.rest import Client
 
 account_sid = 'AC909cf9f7b41e1ef51e3fab1e8f140202'
-auth_token = '90e9aaa2b9e42acd1d1aa4c53837a370'
+auth_token = '-'
 twilio_number = '+14346942415'
 client = Client(account_sid, auth_token)
 
