@@ -29,8 +29,22 @@ def msg():
                                 from_=twilio_number,
                                 to=sender
                             )
-
-    
+    if "playback" in message_body:
+        ml = "<Response>"
+        callNum = 0
+        for c in calls:
+            for r in c.recordings.list():
+                callNum = callNum + 1
+                ml = ml + "<Say>" + "Recording " + str(callNum) + "</Say>"
+                ml = ml + "<Play>" + "http://api.twilio.com/2010-04-01/Accounts/" + account_sid + "/Recordings/" + r.sid + ".mp3" + "</Play>"
+        ml = ml + "</Response>"
+        print(ml)
+        call = client.calls.create(
+                        twiml=ml,
+                        to=sender,
+                        from_=twilio_number
+                    )
+       
     return str()
 
 if __name__ == "__main__":
